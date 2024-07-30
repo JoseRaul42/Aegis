@@ -6,9 +6,9 @@ using Newtonsoft.Json.Linq;
 
 class ChatGetRequest
 {
-    private static readonly HttpClient client = new HttpClient();
-    private const string url = "http://localhost:1234/v1/chat/completions";
-    private const string apiKey = "Bearer no-key";
+    public static readonly HttpClient client = new HttpClient();
+    public const string url = "http://localhost:1234/v1/chat/completions";
+    public const string apiKey = "Bearer no-key";
 
     private static async Task Main(string[] args)
     {
@@ -65,8 +65,8 @@ class ChatGetRequest
             }
 
             // Send requests to both agents asynchronously
-            var agent1Task = GetChatResponse(userInput, "Agent1");
-            var agent2Task = GetChatResponse(userInput, "Agent2");
+            var agent1Task = PrimaryAgent.GetChatResponse(userInput, "Agent1");
+            var agent2Task = SecondaryAgent.GetChatResponse(userInput, "Agent2");
 
             // Wait for both agents to respond
             await Task.WhenAll(agent1Task, agent2Task);
@@ -92,63 +92,11 @@ class ChatGetRequest
         Console.ResetColor();
     }
 
-    private static async Task<string> GetChatResponse(string userInput, string agentName)
-    {
-        try
-        {
 
-            //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-            string filepath = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\TextFile1.txt";
 
-            string filecontent = File.ReadAllText(filepath);
 
-            var SystemContent = filecontent;
 
-            //Create the POST that will be sent to the LLM server
-            var payload = CreatePayload(userInput, agentName, SystemContent);
-            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
-
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Headers.Add("Authorization", apiKey);
-            request.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.SendAsync(request);
-            string responseContent = await response.Content.ReadAsStringAsync();
-
-            return ParseResponse(responseContent);
-        }
-        catch (HttpRequestException httpEx)
-        {
-            return $"Request error: {httpEx.Message}";
-        }
-        catch (Exception ex)
-        {
-            return $"Unexpected error: {ex.Message}";
-        }
-    }
-
-    private static object CreatePayload(string userInput, string agentName, string Textfile1contents)
-    {
-        return new
-        {
-            model = "Meta Llama 3.1 8B Instruct",
-            messages = new[]
-            {
-                new
-                {
-                    role = "system",
-                    content = $"You are {agentName}, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests. Here is a file containing context about your task {Textfile1contents}"
-                },
-                new
-                {
-                    role = "user",
-                    content = userInput
-                }
-            }
-        };
-    }
-
-    private static string ParseResponse(string responseContent)
+    public static string ParseResponse(string responseContent)
     {
         try
         {

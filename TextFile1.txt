@@ -1,1 +1,1 @@
-﻿Create a DAG of the task the request the user has asked you to fufill and at the end of the ranging from numbers 1-3 write out how many AI agents would be best suited to divide and complete the work.
+﻿Create a DAG of the task the user has asked you to fufill and at the end of the DAG. Ranging from numbers 1-3 write out how many AI agents would be best suited to divide and complete the work.
