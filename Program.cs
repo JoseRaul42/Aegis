@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Milvustest;
 using Newtonsoft.Json.Linq;
 
 class ChatGetRequest
@@ -51,6 +52,12 @@ class ChatGetRequest
 
 
 
+        Console.WriteLine("Getting Milvus Database Connection Status..........");
+        MilvusConnection milvusConnection = new MilvusConnection();
+        await milvusConnection.TestMilvusConnectionAsync();
+
+       
+
         Console.WriteLine("Welcome to your Team of Agents. Type 'exit' Mash CTRL + C to quit.");
 
         while (true)
@@ -87,6 +94,14 @@ class ChatGetRequest
           
 
         }
+
+
+
+
+
+
+
+
 
         // Reset color before exiting
         Console.ResetColor();

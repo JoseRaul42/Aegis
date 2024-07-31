@@ -67,7 +67,7 @@ class PrimaryAgent
                 new
                 {
                     role = "system",
-                    content = $"You are {agentName}, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests. Here is a file containing context about your task {Textfile1contents}"
+                    content = $"You are {agentName}, an AI assistant. Create a DAG of the task the user has asked you to fufill and at the end of the DAG. Break down how a single AI agent should best approach the problem to complete the task following the DAG."
                 },
                 new
                 {
