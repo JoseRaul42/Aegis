@@ -1,0 +1,116 @@
+﻿# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Build directories
+bin/
+obj/
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono auto generated files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+.vscode/*
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# C++/CLI
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj.user
+*.vcxproj.filters
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Ria/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file to a newer version
+# dotnet/vb
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+
+# DotNetToolSettings
+.dotnet_tool_settings/
+
+# AWS SDK credentials
+*.aws-credentials
+
+# WCF
+*.svcinfo
+*.svcmap
+*.snapshot
+
+# Exclude all packages and tools folders to avoid any potentially sensitive information in project files
+**/packages/*
+**/tools/*
+
+# .NET Core dependencies
+*.deps.json
+
+# Microsoft Visual Studio Build Cache
+.vscode/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
