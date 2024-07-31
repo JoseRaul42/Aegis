@@ -20,7 +20,7 @@ class SecondaryAgent
 
 
             //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-            string filepath = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\TextFile2.txt";
+            string filepath = @"..\TextFile2.txt";
 
             string filecontent = File.ReadAllText(filepath);
 

@@ -15,7 +15,7 @@ class PrimaryAgent
 
 
             //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-            string filepath = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\TextFile1.txt";
+            string filepath = @""; //for test
 
             string filecontent = File.ReadAllText(filepath);
 
@@ -34,7 +34,7 @@ class PrimaryAgent
 
 
 
-            string Numba2instructionlocation = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\TextFile2.txt";
+            string Numba2instructionlocation = @"..\TextFile2.txt";
 
             string Numba2instructions = ChatGetRequest.ParseResponse(responseContent);
 

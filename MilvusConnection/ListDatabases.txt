@@ -1,1 +1,1 @@
-Databases: default
+Databases: default, AgentKnowledge

@@ -1,4 +1,5 @@
-﻿using Milvus.Client;
+﻿using Microsoft.ML.Data;
+using Milvus.Client;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,11 +11,10 @@ namespace Milvustest
         private string Host = "localhost";
         private int Port = 19530; // This is Milvus's default port
         private bool UseSsl = false; // Default value is false
-        private string Database = "my_database"; // Defaults to the default Milvus database
+        private string Database = "AgentKnowledge"; // Defaults to the default Milvus database
 
         public async Task TestMilvusConnectionAsync()
         {
-
 
 
             try
@@ -32,13 +32,26 @@ namespace Milvustest
                 // List databases
                 var databases = await milvusClient.ListDatabasesAsync();
 
-                // Write databases to a file
-                string filePath = "C:\\Users\\Afro\\Projects\\LocalChatBot\\LocalChatBot\\MilvusConnection\\ListDatabases.txt"; // Replace with your desired file path
-                File.WriteAllText(filePath, "Databases: " + string.Join(", ", databases));
+                // Check if the list of databases is null or does not contain "AgentKnowledge"
+                if (databases == null || !databases.Contains("AgentKnowledge"))
+                {
+                    // Create a new database if "AgentKnowledge" is not found
+                    await milvusClient.CreateDatabaseAsync("AgentKnowledge");
+                }
+                else
+                {
+                    Console.WriteLine("Database AgentKnowledge for vector stores exists..........");
+                }
 
+                // Write databases to a file
+                string filePath = ".\\ListDatabases.txt"; // Replace with your desired file path
+                File.WriteAllText(filePath, "Databases: " + string.Join(", ", databases));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
-             catch (Exception ex) { Console.WriteLine(ex); }
 
 
             // Optional collection management code (commented out)
