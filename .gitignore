@@ -115,6 +115,8 @@ mono_crash.*
 # Build directories
 bin/
 obj/
+.bin/
+.obj/
 
 # Rider
 .idea/
