@@ -1,7 +1,116 @@
-﻿# .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
+﻿# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono Auto Generated)
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Rider project files
+.idea/
+*.sln.iml
+
+# Rider, VS Code, and Visual Studio directories
+.vscode/
+.vscode/*
+.vs/
+
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Visual Studio user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio for Mac
+.vscode/
+.idea/
+*.sln.ide
+
+# Rider
+.idea/
+
+# Visual Studio temporary files
+[Tt]humbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Windows image file caches
+[Tt]humbs.db
+ehthumbs.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# DotNetToolSettings
+.dotnet_tool_settings/
+
+# Microsoft Visual Studio Build Cache
+.vscode/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Rider project files
+.idea/
+*.sln.iml
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Mono auto generated files
+mono_crash.*
+
+# Rider
+.idea/
 
 # Build directories
 bin/

@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[3.0.1, )"
             },
+            "Milvus.Client": {
+              "target": "Package",
+              "version": "[2.2.2-preview.5, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
