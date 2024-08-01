@@ -2,13 +2,15 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Milvustest;
+using LocalChatBot.EmbeddingsAgent;
+using MilvusDatabase;
 using Newtonsoft.Json.Linq;
 
 class ChatGetRequest
 {
     public static readonly HttpClient client = new HttpClient();
     public const string url = "http://localhost:1234/v1/chat/completions";
+    public const string embeddingsurl = "http://localhost:12345/embedding";
     public const string apiKey = "Bearer no-key";
 
     private static async Task Main(string[] args)
@@ -65,6 +67,7 @@ class ChatGetRequest
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("You: ");
             string userInput = Console.ReadLine();
+     
 
             if (userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
             {
@@ -74,13 +77,15 @@ class ChatGetRequest
             // Send requests to both agents asynchronously
             var agent1Task = PrimaryAgent.GetChatResponse(userInput, "Agent1");
             var agent2Task = SecondaryAgent.GetChatResponse(userInput, "Agent2");
+            var embeddingsresult = EmbeddingsAgent.GetChatResponse(userInput,"EmbeddingsAgent");
 
             // Wait for both agents to respond
-            await Task.WhenAll(agent1Task, agent2Task);
+            await Task.WhenAll(agent1Task, agent2Task,embeddingsresult);
 
             // Get responses
             string response_Agent_01 = await agent1Task;
             string response_Agent_02 = await agent2Task;
+            string response_embeddingsagent = await embeddingsresult;
 
             // Display responses
             Console.ForegroundColor = ConsoleColor.Green;
@@ -91,7 +96,13 @@ class ChatGetRequest
             Console.WriteLine("Agent2:");
             PrintWrappedText(response_Agent_02);
 
-          
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("embeddings:");
+            PrintWrappedText(response_embeddingsagent);
+
+
+
+
 
         }
 

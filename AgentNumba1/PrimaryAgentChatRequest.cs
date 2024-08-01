@@ -15,14 +15,14 @@ class PrimaryAgent
 
 
             //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-            string filepath = @""; //for test
+            //string filepath = @"../"; //for test
 
-            string filecontent = File.ReadAllText(filepath);
+            //string filecontent = File.ReadAllText(filepath);
 
-            var SystemContent = filecontent;
+            //var SystemContent = filecontent;
 
             //Create the POST that will be sent to the LLM server
-            var payload = CreatePayload(userInput, agentName, SystemContent);
+            var payload = CreatePayload(userInput, agentName);
             string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
 
             var request = new HttpRequestMessage(HttpMethod.Post, ChatGetRequest.url);
@@ -34,7 +34,7 @@ class PrimaryAgent
 
 
 
-            string Numba2instructionlocation = @"..\TextFile2.txt";
+            string Numba2instructionlocation = @"..\DAGinstructions.txt";
 
             string Numba2instructions = ChatGetRequest.ParseResponse(responseContent);
 
@@ -57,7 +57,7 @@ class PrimaryAgent
         }
     }
 
-    private static object CreatePayload(string userInput, string agentName, string Textfile1contents)
+    private static object CreatePayload(string userInput, string agentName)
     {
         return new
         {

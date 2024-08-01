@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using MilvusDatabase;
 
 
 
@@ -20,7 +21,9 @@ class SecondaryAgent
 
 
             //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-            string filepath = @"..\TextFile2.txt";
+           
+            string filepath = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\DAGInstructions.txt";
+
 
             string filecontent = File.ReadAllText(filepath);
 
@@ -48,6 +51,10 @@ class SecondaryAgent
             return $"Unexpected error: {ex.Message}";
         }
     }
+
+
+
+
 
     private static object CreatePayload(string userInput, string agentName, string Textfile1contents)
     {
