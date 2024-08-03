@@ -33,8 +33,11 @@ class PrimaryAgent
             string responseContent = await response.Content.ReadAsStringAsync();
 
 
+            //THIS NEEDS TO BE CHANGED SINCE THE FILE STRUCTURE IS CALLED FROM THE BIN FOLDER WHEN TESTING
+            string relativePath = Path.Combine("..", "..", "..", "DAGInstructions.md");
+            Path.GetFullPath(relativePath);
 
-            string Numba2instructionlocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,@"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\DAGInstructions.txt");
+            string Numba2instructionlocation = Path.GetFullPath(relativePath);
 
             string Numba2instructions = ChatGetRequest.ParseResponse(responseContent);
 

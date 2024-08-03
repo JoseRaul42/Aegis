@@ -52,8 +52,10 @@ namespace LocalChatBot.EmbeddingsAgent
 
 
 
-                //Testing how to best give context to the LLM by reading and writing small tasks from this file.
-                string filepath = @"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\DAGInstructions.txt";
+                //THIS NEEDS TO BE CHANGED SINCE THE FILE STRUCTURE IS CALLED FROM THE BIN FOLDER WHEN TESTING
+
+                string relativePath = Path.Combine("..", "..", "..", "DAGInstructions.md");
+                string filepath = Path.GetFullPath(relativePath);
 
                 string filecontent = File.ReadAllText(filepath);
 

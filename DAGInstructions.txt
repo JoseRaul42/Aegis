@@ -1,5 +1,0 @@
-Here is a high-level DAG (directed acyclic graph) of the tasks required to write a small web scraper program in .NET:
-
-```
-
-Now, let's break down how a single AI agent (in this case, a software developer) should best approach the problem to complete the
