@@ -70,7 +70,9 @@ namespace LocalChatBot.EmbeddingsAgent
                 HttpResponseMessage response = await ChatGetRequest.client.SendAsync(request);
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                //Console.WriteLine(filepath);
+
+                ////For testing purposes
+                //Console.WriteLine(filepath); 
                 //Console.WriteLine(SystemContent);
                 //Console.WriteLine(EmbeddingsParseResponse(responseContent));
 
