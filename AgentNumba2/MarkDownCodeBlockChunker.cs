@@ -15,7 +15,7 @@ namespace LocalChatBot.AgentNumba2
 
 
 
-            //THIS NEEDS TO BE CHANGED SINCE THE FILE STRUCTURE IS CALLED FROM THE BIN FOLDER WHEN TESTING
+            //TODO: THIS NEEDS TO BE CHANGED SINCE THE FILE STRUCTURE IS CALLED FROM THE BIN FOLDER WHEN TESTING NOT THE SAME FILE STRUCTURE AS THE REPO
             string relativePath = Path.Combine( "..", "..", "..", "DAGInstructions.md");
             string filePath = Path.GetFullPath(relativePath);
             int chunkSize = 3000; // chunk size in characters
