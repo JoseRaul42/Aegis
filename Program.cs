@@ -10,7 +10,7 @@ class ChatGetRequest
 {
     public static readonly HttpClient client = new HttpClient();
     public const string url = "http://localhost:1234/v1/chat/completions";
-    public const string embeddingsurl = "http://localhost:12345/embedding";
+    public const string embeddingsurl = "http://localhost:12345/v1/embeddings";
     public const string apiKey = "Bearer no-key";
 
     private static async Task Main(string[] args)
@@ -53,13 +53,13 @@ class ChatGetRequest
 
 
 
-
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("Getting Milvus Database Connection Status..........");
         MilvusConnection milvusConnection = new MilvusConnection();
         await milvusConnection.TestMilvusConnectionAsync();
 
-       
 
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("Welcome to your Team of Agents. Type 'exit' Mash CTRL + C to quit.");
 
         while (true)
@@ -74,18 +74,21 @@ class ChatGetRequest
                 break;
             }
 
-            // Send requests to both agents asynchronously
+            // Send requests to agent 1
             var agent1Task = PrimaryAgent.GetChatResponse(userInput, "Agent1");
-            var agent2Task = SecondaryAgent.GetChatResponse(userInput, "Agent2");
-            var embeddingsresult = EmbeddingsAgent.GetChatResponse(userInput,"EmbeddingsAgent");
-
-            // Wait for both agents to respond
-            await Task.WhenAll(agent1Task, agent2Task,embeddingsresult);
-
-            // Get responses
+            // Get response
             string response_Agent_01 = await agent1Task;
+
+            // Send requests to agent 2 after agent 1 has finished
+            var agent2Task = SecondaryAgent.GetChatResponse(userInput, "Agent2");
+            // Get responses
             string response_Agent_02 = await agent2Task;
+
+            // Send requests to embeddings agent
+            var embeddingsresult = EmbeddingsAgent.GetChatResponse(userInput,"EmbeddingsAgent");
+            // Get responses
             string response_embeddingsagent = await embeddingsresult;
+
 
             // Display responses
             Console.ForegroundColor = ConsoleColor.Green;

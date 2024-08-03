@@ -34,7 +34,7 @@ class PrimaryAgent
 
 
 
-            string Numba2instructionlocation = @"..\DAGinstructions.txt";
+            string Numba2instructionlocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,@"C:\Users\Afro\Projects\LocalChatBot\LocalChatBot\DAGInstructions.txt");
 
             string Numba2instructions = ChatGetRequest.ParseResponse(responseContent);
 
@@ -61,7 +61,7 @@ class PrimaryAgent
     {
         return new
         {
-            model = "Meta Llama 3.1 8B Instruct",
+            
             messages = new[]
             {
                 new

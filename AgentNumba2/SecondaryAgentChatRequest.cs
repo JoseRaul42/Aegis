@@ -27,7 +27,7 @@ class SecondaryAgent
 
             string filecontent = File.ReadAllText(filepath);
 
-            var SystemContent = filecontent;
+            var SystemContent = await PrimaryAgent.GetChatResponse(userInput, "Agent1"); ;
 
             //Create the POST that will be sent to the LLM server
             var payload = CreatePayload(userInput, agentName, SystemContent);
@@ -41,6 +41,7 @@ class SecondaryAgent
             string responseContent = await response.Content.ReadAsStringAsync();
 
             return ChatGetRequest.ParseResponse(responseContent);
+           
         }
         catch (HttpRequestException httpEx)
         {
@@ -60,19 +61,15 @@ class SecondaryAgent
     {
         return new
         {
-            model = "Meta Llama 3.1 8B Instruct",
+           
             messages = new[]
             {
                 new
                 {
                     role = "system",
                     content = $"You are {agentName}, an AI assistant. Your top priority is following the instructions laid out for you. Here is a file containing context about your task {Textfile1contents}"
-                },
-                new
-                {
-                    role = "user",
-                    content = userInput
                 }
+            
             }
         };
     }

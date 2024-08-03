@@ -24,6 +24,7 @@ namespace MilvusDatabase
 
                 // Perform a health check
                 MilvusHealthState healthState = await milvusClient.HealthAsync();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Health State: {healthState}");
 
                 //// Create a CancellationToken
@@ -37,9 +38,12 @@ namespace MilvusDatabase
                 {
                     // Create a new database if "AgentKnowledge" is not found
                     await milvusClient.CreateDatabaseAsync("AgentKnowledge");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("We created a Database named AgentKnowledge to to use as a vector store..........");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Database AgentKnowledge for vector stores exists..........");
                 }
 
@@ -49,7 +53,9 @@ namespace MilvusDatabase
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(ex);
+                Console.ForegroundColor= ConsoleColor.White;
             }
 
 

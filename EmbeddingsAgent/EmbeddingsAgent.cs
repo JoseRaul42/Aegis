@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,22 +19,26 @@ namespace LocalChatBot.EmbeddingsAgent
             {
                 var jsonResponse = JObject.Parse(responseContent);
 
-                // Check for errors in the response
-                if (jsonResponse["error"] != null)
+                // Assuming the embeddings response contains 'data' key which is an array of objects
+                var data = jsonResponse["data"]?.ToArray();
+
+                if (data != null && data.Length > 0)
                 {
-                    return $"Error from server: {jsonResponse["error"]["message"]?.ToString()}";
+                    var embedding = data[0]["embedding"]?.ToArray();
+
+                    if (embedding != null && embedding.Length > 0)
+                    {
+                        return string.Join(", ", embedding.Select(e => e.ToString()));
+                    }
                 }
 
-                // Assuming the embeddings response contains 'embedding' key
-                var embeddings = jsonResponse["data"]?.ToString();
-
-                return embeddings ?? "No embeddings found in the response.";
+                return "No embeddings found in the response.";
             }
             catch (Exception ex)
             {
                 // Log the raw response for debugging
-                Console.WriteLine("Raw response content:");
-                Console.WriteLine(responseContent);
+                //Console.WriteLine("Raw response content:");
+                //Console.WriteLine(responseContent);
                 return $"Error parsing response: {ex.Message}";
             }
         }
@@ -67,7 +72,7 @@ namespace LocalChatBot.EmbeddingsAgent
 
                 //Console.WriteLine(filepath);
                 //Console.WriteLine(SystemContent);
-                Console.WriteLine(EmbeddingsParseResponse(responseContent));
+                //Console.WriteLine(EmbeddingsParseResponse(responseContent));
 
 
 
@@ -90,8 +95,9 @@ namespace LocalChatBot.EmbeddingsAgent
         {
             return new
             {
-                model = "Meta Llama 3.1 8B Instruct",
-                prompt = textfileContents
+               
+                input = textfileContents,
+                encoding_format = "float"
             };
         }
 

@@ -1,0 +1,1 @@
+https://github.com/rokbenko/ai-playground/tree/main/milvus-tutorials/2-Attu_starter
