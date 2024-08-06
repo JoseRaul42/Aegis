@@ -18,16 +18,6 @@ class SecondaryAgent
         try
         {
 
-
-
-            //TODO: THIS NEEDS TO BE CHANGED SINCE THE FILE STRUCTURE IS CALLED FROM THE BIN FOLDER WHEN TESTING NOT THE SAME FILE STRUCTURE AS THE REPO
-
-            string relativePath = Path.Combine( "..", "..", "..", "DAGInstructions.md");
-            string filepath = Path.GetFullPath(relativePath);
-
-
-            string filecontent = File.ReadAllText(filepath);
-
             var SystemContent = await PrimaryAgent.GetChatResponse(userInput, "Agent1"); ;
 
             //Create the POST that will be sent to the LLM server
@@ -60,6 +50,9 @@ class SecondaryAgent
 
     private static object CreatePayload(string userInput, string agentName, string Textfile1contents)
     {
+
+        string Datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
         return new
         {
            
@@ -67,8 +60,8 @@ class SecondaryAgent
             {
                 new
                 {
-                    role = "system",
-                    content = $"You are {agentName}, an AI assistant. Your top priority is following the instructions laid out for you. Here is a file containing context about your task {Textfile1contents}"
+                    role = "system",   //TODO: Edit prompt to include todays date to give context to an agent. and more details on how to respond to questions about logs
+                    content = $"You are {agentName}. Today's date is {Datetime} Use these instructions to generate a threat report. {Textfile1contents}." 
                 }
             
             }

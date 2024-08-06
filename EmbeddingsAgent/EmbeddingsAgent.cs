@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalChatBot.EmbeddingsAgent
+namespace Aegis.EmbeddingsAgent
 {
     internal class EmbeddingsAgent
     {

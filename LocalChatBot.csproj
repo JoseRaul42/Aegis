@@ -8,15 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="MilvusConnection\MilvusStandalonesetup\volumes\milvus\data\**" />
-    <Compile Remove="MilvusConnection\MilvusStandalonesetup\volumes\minio\**" />
-    <EmbeddedResource Remove="MilvusConnection\MilvusStandalonesetup\volumes\milvus\data\**" />
-    <EmbeddedResource Remove="MilvusConnection\MilvusStandalonesetup\volumes\minio\**" />
-    <None Remove="MilvusConnection\MilvusStandalonesetup\volumes\milvus\data\**" />
-    <None Remove="MilvusConnection\MilvusStandalonesetup\volumes\minio\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="3.0.1" />
     <PackageReference Include="Microsoft.ML.DataView" Version="3.0.1" />
     <PackageReference Include="Milvus.Client" Version="2.2.2-preview.5" />

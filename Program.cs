@@ -2,7 +2,8 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using LocalChatBot.EmbeddingsAgent;
+using Aegis.EmbeddingsAgent;
+using Aegis.Snort_logs;
 using MilvusDatabase;
 using Newtonsoft.Json.Linq;
 
@@ -48,19 +49,44 @@ class ChatGetRequest
                   `!988888888899fT|!^'
                     `!9899fT|!^'
                       `!^' ";
+
+
+        string titlename = @$"
+ ░▒▓██████▓▒░ ░▒▓████████▓▒░░▒▓██████▓▒░ ░▒▓█▓▒░ ░▒▓███████▓▒░   
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░         
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░       ░▒▓█▓▒░░▒▓█▓▒░          
+░▒▓████████▓▒░░▒▓██████▓▒░ ░▒▓█▓▒▒▓███▓▒░░▒▓█▓▒░ ░▒▓██████▓▒░     
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░       ░▒▓█▓▒░            
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░       ░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░░▒▓████████▓▒░░▒▓██████▓▒░ ░▒▓█▓▒░░▒▓███████▓▒░            
+    ";
+
+        Console.SetWindowSize(80, 20);
         string centeredTitle = title.PadLeft((consoleWidth + title.Length) / 2).PadRight(consoleWidth);
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine(centeredTitle);
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine(titlename);
 
 
-
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("Getting Milvus Database Connection Status..........");
         MilvusConnection milvusConnection = new MilvusConnection();
         await milvusConnection.TestMilvusConnectionAsync();
 
 
+
+
+        //Alerts from .txt file in Snort logs in desc order by count and grouped by title
         Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("Welcome to your Team of Agents. Type 'exit' Mash CTRL + C to quit.");
+        Console.WriteLine("Printing Alerts From Snort Logs...............");
+        ReadSnortLogs snortLogs = new ReadSnortLogs();
+        Console.WriteLine(snortLogs.ProcessSnortLogs());
+
+
+
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("Welcome to Aegis. Type 'exit' or Mash CTRL + C to quit.");
 
         while (true)
         {
@@ -85,12 +111,14 @@ class ChatGetRequest
             string response_Agent_02 = await agent2Task;
 
             // Send requests to embeddings agent
-            var embeddingsresult = EmbeddingsAgent.GetChatResponse(userInput,"EmbeddingsAgent");
+            var embeddingsresult = EmbeddingsAgent.GetChatResponse(userInput, "EmbeddingsAgent");
             // Get responses
             string response_embeddingsagent = await embeddingsresult;
 
 
             // Display responses
+
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Agent1:");
             PrintWrappedText(response_Agent_01);

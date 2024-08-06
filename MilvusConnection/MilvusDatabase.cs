@@ -60,6 +60,9 @@ namespace MilvusDatabase
 
 
 
+            //TODO: add a function to vectorize the logs and put them into the milvus database to conduct a similarity search
+
+
             // Optional collection management code (commented out)
             // string collectionName = "book";
             // MilvusCollection collection = milvusClient.GetCollection(collectionName);
