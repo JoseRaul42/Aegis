@@ -6,7 +6,7 @@ Aegis is a .NET Console application designed to read raw alert files generated b
 ## Tools Used
 
 - **.NET Core:** For building the console application.
-- **Snort IDS:** Utilized with untuned community rules to generate raw alert files that are analyzed by Aegis. [Malicous Network Traffic example used.](https://www.malware-traffic-analysis.net/2024/07/23/index.html)
+- **Snort IDS:** Utilized with community rules to generate raw alert files that are analyzed by Aegis. [Malicous Network Traffic example used.](https://www.malware-traffic-analysis.net/2024/07/23/index.html)
 - **llama.cpp:** For hosting an LLM server.
 - **Milvus Database:** A vector database used for efficient storage and retrieval of embeddings.
 - [**Meta-Llama-3.1-8B-Instruct-abliterated-GGUF:**](https://huggingface.co/mlabonne/Meta-Llama-3.1-8B-Instruct-abliterated-GGUF) An LLM model from Hugging Face, providing the core language processing capabilities.
